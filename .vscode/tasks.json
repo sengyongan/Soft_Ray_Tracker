@@ -1,0 +1,24 @@
+/* 任务集:包含若干任务，每个任务具有一些字符串形式的键或者属性 */
+{
+    "tasks": [
+        {
+            "label": "build debug Win32", /* 标签 */
+            "type": "shell", /* 任务类型 */
+            "command": "cl", /* 调用指令 */
+            "args": [
+                "@build\\Debug",
+                "/Fo:obj\\",
+                "/Zi",
+                "/Od",
+                "/EHsc",
+            ],
+            "group": {
+                "kind": "build",
+                "isDefault": true
+            },
+            "problemMatcher": [
+                "$msCompile"
+            ]
+        }
+    ]
+}

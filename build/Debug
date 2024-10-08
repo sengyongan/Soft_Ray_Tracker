@@ -1,0 +1,18 @@
+src\external\rtw_stb_image.cpp
+
+src\tool\vec3.cpp
+src\tool\color.cpp
+src\tool\rtweekend.cpp
+src\tool\interval.cpp
+src\tool\aabb.cpp
+src\tool\BVH.cpp
+
+src\obj\hittable.cpp
+src\obj\hittable_list.cpp
+src\obj\sphere.cpp
+
+src\render\ray.cpp
+src\render\camera.cpp
+src\render\material.cpp
+src\render\texture.cpp
+/Fe:"bin\hello" /MTd src\main.cpp 

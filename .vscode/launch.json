@@ -1,0 +1,20 @@
+{
+    "version": "0.2.0",
+    "configurations": [
+        {
+            "name": "cl.exe - 生成和调试活动文件",
+            "type": "cppvsdbg",
+            "request": "launch",
+            "program": "${workspaceFolder}/bin/hello.exe",
+            "args": [],
+            "stopAtEntry": false,
+            "cwd": [
+                "${workspaceFolder}",
+                "${workspaceFolder}/src/tool/"
+            ],
+            "environment": [],
+            "externalConsole": false,
+            "preLaunchTask": "build debug Win32" // 确保这个任务名称与 tasks.json 中的一致  
+        }
+    ]
+}
