@@ -6,6 +6,7 @@ src\tool\rtweekend.cpp
 src\tool\interval.cpp
 src\tool\aabb.cpp
 src\tool\BVH.cpp
+src\tool\onb.cpp
 
 src\obj\hittable.cpp
 src\obj\hittable_list.cpp

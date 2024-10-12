@@ -120,7 +120,7 @@ inline vec3 cross(const vec3 &u, const vec3 &v)
                 u.e[0] * v.e[1] - u.e[1] * v.e[0]);
 }
 
-inline vec3 unit_vector(const vec3 &v)
+inline vec3 unit_vector(const vec3 &v)/* 标准化 */
 {
     return v / v.length();
 }
@@ -150,6 +150,17 @@ inline vec3 random_on_hemisphere(const vec3 &normal)
         return on_unit_sphere;
     else
         return -on_unit_sphere;
+}
+inline vec3 random_cosine_direction() {/* 返回余弦分布的随机向量 */
+    auto r1 = random_double();
+    auto r2 = random_double();
+
+    auto phi = 2*pi*r1;
+    auto x = std::cos(phi) * std::sqrt(r2);
+    auto y = std::sin(phi) * std::sqrt(r2);
+    auto z = std::sqrt(1-r2);
+
+    return vec3(x, y, z);
 }
 inline vec3 reflect(const vec3 &v, const vec3 &n)
 { /* 反射向量 */

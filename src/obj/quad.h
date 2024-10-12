@@ -14,6 +14,8 @@ public:
         normal = unit_vector(n);
         D = dot(normal, Q);
         w = n / dot(n, n);
+        area = n.length();
+
         set_bounding_box();
     }
 
@@ -71,6 +73,23 @@ public:
         rec.v = b;
         return true;
     }
+    double pdf_value(const point3 &origin, const vec3 &direction) const override /* 应传入交点，和交点-》光源的反射方向 */
+    {
+        hit_record rec;
+        if (!this->hit(ray(origin, direction), interval(0.001, infinity), rec)) /* 没有击中光源，返回0 */
+            return 0;
+        /* 否则返回：p(direction) = distance(p,q)^2 / (cosα * A) */
+        auto distance_squared = rec.t * rec.t * direction.length_squared();
+        auto cosine = std::fabs(dot(direction, rec.normal) / direction.length());
+
+        return distance_squared / (cosine * area);
+    }
+
+    vec3 random(const point3 &origin) const override
+    {
+        auto p = Q + (random_double() * u) + (random_double() * v);
+        return p - origin;
+    }
 
 private:
     point3 Q;  /* 起始点 */
@@ -80,6 +99,7 @@ private:
     aabb bbox;                /* 包围盒 */
     vec3 normal;              /* 法线 */
     double D;
+    double area; /* 光源面积 */
 };
 inline shared_ptr<hittable_list> box(const point3 &a, const point3 &b, shared_ptr<material> mat)
 {
